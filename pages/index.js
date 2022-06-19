@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 
-export default function Home({posts}) {
+export default function Home({posts, date}) {
   const [count, setCount] = useState(0)
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function Home({posts}) {
         </title>
       </Head>
       <div>
-        <h3>Count : {count} </h3>
+        <h3>Count : {count} - {date} </h3>
         <ul>
           {posts.map(post => <li>
             <Link href={`/blog/${post.id}`}>
@@ -35,12 +35,14 @@ export default function Home({posts}) {
   )
 }
 
-export async function getServerSideProps () {
+export async function getStaticProps () {
   const posts = await fetch(`https://jsonplaceholder.typicode.com/posts?_limit=4`)
   .then(r => r.json())
   return {
     props: {
-      posts
-    }
+      posts,
+      date: (new Date()).toString()
+    },
+    revalidate: 5,
   }
 }
