@@ -35,7 +35,7 @@ export default function Home({posts}) {
   )
 }
 
-export async function getStaticProps () {
+export async function getServerSideProps () {
   const posts = await fetch(`https://jsonplaceholder.typicode.com/posts?_limit=4`)
   .then(r => r.json())
   return {
