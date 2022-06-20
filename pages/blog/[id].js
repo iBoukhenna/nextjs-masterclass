@@ -4,7 +4,7 @@ export default function Post ({post}) {
     return <>
         <main>
             <Link href="/">
-                <a>Revenir à l'acceuil</a>
+                <a>Revenir à l`acceuil</a>
             </Link>
             <h1>{post.title}</h1>
             <p>{post.body}</p>

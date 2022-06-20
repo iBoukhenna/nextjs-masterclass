@@ -22,7 +22,7 @@ export default function Home({posts, date}) {
       <div>
         <h3>Count : {count} - {date} </h3>
         <ul>
-          {posts.map(post => <li>
+          {posts.map((post, k) => <li key={k}>
             <Link href={`/blog/${post.id}`}>
               <a>
                 <h3>{post.id} - {post.title}</h3>
